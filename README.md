@@ -1,7 +1,5 @@
 # Bank Statements Collector
-Laravel package to collect your bank statements history. Currently support for parsing statements history from **BCA** and **Mandiri** e-banking websites.
-
-**BNI** e-banking website is also supported, but I'm not provide the class in this package. Additional open-source libraries/softwares is required inside the server to help solving the captcha, also additional process in your main app are required. **No additional third-party service payment** required.
+Laravel package to collect your bank statements history. Currently support for parsing statements history from **BCA**, **Mandiri**, and **BNI** e-banking websites.
 
 **Read and make sure you understand everything first before submiting your questions. Create a issue if you found a bug.
 
@@ -13,7 +11,7 @@ Check the [composer.json](https://github.com/feelinc/laravel-bank-statements/blo
 
 After you have installed package, open your Laravel config file **config/app.php** and add the following lines.
 
-In the **$providers** array add the service providers for this package.
+In the **$providers** array add the service provider for this package.
 
     Sule\BankStatements\Provider\LaravelServiceProvider::class
     
@@ -69,8 +67,14 @@ Each collector require a bank account data created. Create one first.
     ];
     
     $accountProvider->create($data);
-    
-To start collecting
+
+Available collectors :
+- bca, url : https://ibank.klikbca.com
+- mandiri, url : https://ib.bankmandiri.co.id
+- bni-mobile, url : https://ibank.bni.co.id/MBAWeb/FMB
+
+
+To start collecting (scrapping) from registered e-banking website accounts
 
     // I think 6 days range is good enough
     $startOfMonth = (Carbon::now())->startOfMonth();
@@ -87,7 +91,7 @@ To start collecting
     $statementProvider = app(\Sule\BankStatements\Statement::class);
     $statementProvider->collect($startDate, $endDate);
     
-The whole collected statements history will be saved into a table, you can collect them using below codes example
+The whole collected statements history will be saved into a table, you can query them using below codes example
 
     // Set specific bank account ID if required
     $accountId = 0;
