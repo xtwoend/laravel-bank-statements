@@ -32,9 +32,10 @@ interface WebInterface
     /**
      * Return default HTTP request options.
      *
+     * @param  bool  $isMobile
      * @return Array
      */
-    public function getRequestOptions();
+    public function getRequestOptions($isMobile = false);
 
     /**
      * Set the temporary storage path.

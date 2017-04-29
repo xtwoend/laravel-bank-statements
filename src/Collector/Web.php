@@ -45,6 +45,13 @@ abstract class Web implements WebInterface
     protected $userAgent;
 
     /**
+     * The connection mobile user agent.
+     *
+     * @var string
+     */
+    protected $mobileUserAgent;
+
+    /**
      * The connection IP Address.
      *
      * @var string
@@ -117,10 +124,7 @@ abstract class Web implements WebInterface
     /**
      * Create a new instance.
      *
-     * @param  array   $config
-     * @param  string  $userAgent
-     * @param  string  $ipAddress
-     * @param  array   $options
+     * @param  array  $config
      * @return void
      * @throws \RuntimeException
      */
@@ -128,6 +132,10 @@ abstract class Web implements WebInterface
     {
         if ( ! isset($config['user_agent'])) {
             throw new RuntimeException('No user_agent config defined');
+        }
+
+        if ( ! isset($config['mobile_user_agent'])) {
+            throw new RuntimeException('No mobile_user_agent config defined');
         }
 
         if ( ! isset($config['ip_address'])) {
@@ -142,10 +150,11 @@ abstract class Web implements WebInterface
             throw new RuntimeException('No options config defined');
         }
 
-        $this->userAgent    = $config['user_agent'];
-        $this->ipAddress    = $config['ip_address'];
-        $this->requestDelay = $config['request_delay'];
-        $this->options      = $config['options'];
+        $this->userAgent       = $config['user_agent'];
+        $this->mobileUserAgent = $config['mobile_user_agent'];
+        $this->ipAddress       = $config['ip_address'];
+        $this->requestDelay    = $config['request_delay'];
+        $this->options         = $config['options'];
     }
 
     /**
@@ -175,13 +184,13 @@ abstract class Web implements WebInterface
     /**
      * {@inheritdoc}
      */
-    public function getRequestOptions()
+    public function getRequestOptions($isMobile = false)
     {
         return array_merge($this->options, [
             'verify'  => false,
             'cookies' => $this->getCookieJar(), 
             'headers' => [
-                'User-Agent'      => $this->userAgent, 
+                'User-Agent'      => ( ! $isMobile) ? $this->userAgent : $this->mobileUserAgent, 
                 'X-Forwarded-For' => $this->ipAddress
             ]
         ]);

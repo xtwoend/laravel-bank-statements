@@ -15,6 +15,8 @@ use Illuminate\Support\ServiceProvider;
 
 use Sule\BankStatements\Console\TableCommand;
 use Sule\BankStatements\Console\AccountsTableCommand;
+use Sule\BankStatements\Console\AssetsCommand;
+use Sule\BankStatements\Console\ViewsCommand;
 
 use Sule\BankStatements\Account;
 use Sule\BankStatements\Statement;
@@ -125,8 +127,6 @@ abstract class BankStatementsServiceProvider extends ServiceProvider
      */
     protected function registerCollectorServices()
     {
-        $config = $this->app['config']['sule/bank-statements.client'];
-
         foreach ($this->getCollectors() as $index => $item) {
             $this->app->singleton($index, function () use ($item) {
                 return $item;
