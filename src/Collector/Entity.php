@@ -63,12 +63,12 @@ class Entity implements EntityInterface
      */
     public function __construct(Array $data)
     {
-        $this->accountId   = $data['account_id'];
-        $this->uniqueId    = $data['unique_id'];
-        $this->date        = $data['date'];
-        $this->description = $data['description'];
-        $this->type        = $data['type'];
-        $this->amount      = $data['amount'];
+        $this->_accountId   = $data['account_id'];
+        $this->_uniqueId    = $data['unique_id'];
+        $this->_date        = $data['date'];
+        $this->_description = $data['description'];
+        $this->_type        = $data['type'];
+        $this->_amount      = $data['amount'];
     }
 
     /**
