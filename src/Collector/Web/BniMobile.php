@@ -436,13 +436,32 @@ class BniMobile extends Web
                 $this->mbParam = $mbparam->getAttribute('value');
             }
 
-            $pagination = $dom->getElementById('Pagination');
-            if ( ! $pagination instanceOf DOMNode) {
-                return new Collection();
+            $s1Table = $dom->getElementById('s1_table');
+            if ( ! $s1Table instanceOf DOMNode) {
+                return allItems;
             }
 
-            $items = $this->extractStatements($pagination);
-            
+            $container = $dom->getElementsByTagName('Pagination');
+            if ( ! $container instanceOf DOMNode) {
+                $form = $dom->getElementById('form');
+                if ($form instanceOf DOMNode) {
+                    $divs = $form->getElementsByTagName('div');
+                    if ($divs instanceOf DOMNodeList) {
+                        foreach ($divs as $div) {
+                            if ($div->getAttribute('class') == 'Commondiv') {
+                                $container = $div;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+
+            if ( ! $container instanceOf DOMNode) {
+                return allItems;
+            }
+
+            $items = $this->extractStatements($container);
             if ($items->isNotEmpty()) {
                 $allItems = $allItems->merge($items);
 
@@ -519,13 +538,32 @@ class BniMobile extends Web
                 $this->mbParam = $mbparam->getAttribute('value');
             }
 
-            $pagination = $dom->getElementById('Pagination');
-            if ( ! $pagination instanceOf DOMNode) {
+            $s1Table = $dom->getElementById('s1_table');
+            if ( ! $s1Table instanceOf DOMNode) {
                 return allItems;
             }
 
-            $items = $this->extractStatements($pagination);
+            $container = $dom->getElementsByTagName('Pagination');
+            if ( ! $container instanceOf DOMNode) {
+                $form = $dom->getElementById('form');
+                if ($form instanceOf DOMNode) {
+                    $divs = $form->getElementsByTagName('div');
+                    if ($divs instanceOf DOMNodeList) {
+                        foreach ($divs as $div) {
+                            if ($div->getAttribute('class') == 'Commondiv') {
+                                $container = $div;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
 
+            if ( ! $container instanceOf DOMNode) {
+                return allItems;
+            }
+
+            $items = $this->extractStatements($container);
             if ($items->isNotEmpty()) {
                 $allItems = $allItems->merge($items);
 
@@ -554,7 +592,7 @@ class BniMobile extends Web
     {
         $items = new Collection();
 
-        $rows = $node->childNodes;
+        $rows = $node->getElementsByTagName('table');
 
         if ( ! $rows instanceOf DOMNodeList) {
             throw new RuntimeException('Required list of "table" HTML tags does not found below "div" tag Pagination');
