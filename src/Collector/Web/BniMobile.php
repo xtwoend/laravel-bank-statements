@@ -438,7 +438,7 @@ class BniMobile extends Web
 
             $s1Table = $dom->getElementById('s1_table');
             if ( ! $s1Table instanceOf DOMNode) {
-                return allItems;
+                return $allItems;
             }
 
             $container = $dom->getElementsByTagName('Pagination');
@@ -458,7 +458,7 @@ class BniMobile extends Web
             }
 
             if ( ! $container instanceOf DOMNode) {
-                return allItems;
+                return $allItems;
             }
 
             $items = $this->extractStatements($container);
@@ -540,7 +540,7 @@ class BniMobile extends Web
 
             $s1Table = $dom->getElementById('s1_table');
             if ( ! $s1Table instanceOf DOMNode) {
-                return allItems;
+                return $allItems;
             }
 
             $container = $dom->getElementsByTagName('Pagination');
@@ -560,7 +560,7 @@ class BniMobile extends Web
             }
 
             if ( ! $container instanceOf DOMNode) {
-                return allItems;
+                return $allItems;
             }
 
             $items = $this->extractStatements($container);
