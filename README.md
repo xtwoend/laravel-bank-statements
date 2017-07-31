@@ -163,15 +163,13 @@ To modify the configuration file, the default config file need to be published f
 - Insert your new collector class into "**/config/config.php**" file.
 - Test your new collector.
 
-Contributions to the Laravel Bank Statements library are very welcome. Please note the following guidelines before submiting your pull request.
-
-- Follow [PSR-2](http://www.php-fig.org/psr/psr-2/) coding standards.
-- Write tests for new functions and added features
+Contributions to the Laravel Bank Statements library are very welcome
 
 ## License
 
 Intervention Image is licensed under the [MIT License](http://opensource.org/licenses/MIT).
 
 Author : [Sulaeman](https://www.sulaeman.com/)
+
 Contributors :
  - [Ageng D. Prastyawan](https://github.com/agengdp)
