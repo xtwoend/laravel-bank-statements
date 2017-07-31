@@ -172,4 +172,6 @@ Contributions to the Laravel Bank Statements library are very welcome. Please no
 
 Intervention Image is licensed under the [MIT License](http://opensource.org/licenses/MIT).
 
-Copyright 2017 [Sulaeman](https://www.sulaeman.com/)
+Author : [Sulaeman](https://www.sulaeman.com/)
+Contributors :
+ - [Ageng D. Prastyawan](https://github.com/agengdp)
