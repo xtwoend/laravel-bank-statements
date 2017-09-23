@@ -167,7 +167,7 @@ Contributions to the Laravel Bank Statements library are very welcome
 
 ## License
 
-Intervention Image is licensed under the [MIT License](http://opensource.org/licenses/MIT).
+Bank Statements Collector is licensed under the [MIT License](http://opensource.org/licenses/MIT).
 
 Author : [Sulaeman](https://www.sulaeman.com/)
 
