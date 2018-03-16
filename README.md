@@ -1,5 +1,5 @@
 # Bank Statements Collector
-Laravel package to collect your bank statements history. Currently support for parsing statements history from **BCA**, **Mandiri**, and **BNI** e-banking websites.
+Laravel package to collect your bank statements history. Currently support for parsing statements history from **BCA**, **Mandiri**, **BNI**, and **MUAMALAT** e-banking websites.
 
 **Read and make sure you understand everything first before submiting your questions. Create a issue if you found a bug.
 
