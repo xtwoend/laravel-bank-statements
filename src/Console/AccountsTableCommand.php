@@ -66,7 +66,7 @@ class AccountsTableCommand extends Command
      */
     public function fire()
     {
-        $table = $this->laravel['config']['sule/bank-statements.accounts.table'];
+        $table = $this->laravel['config']['sule.bank-statements.accounts.table'];
 
         $this->replaceMigration(
             $this->createBaseMigration($table), $table, Str::studly($table)

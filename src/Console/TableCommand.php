@@ -66,7 +66,7 @@ class TableCommand extends Command
      */
     public function fire()
     {
-        $table = $this->laravel['config']['sule/bank-statements.statements.table'];
+        $table = $this->laravel['config']['sule.bank-statements.statements.table'];
 
         $this->replaceMigration(
             $this->createBaseMigration($table), $table, Str::studly($table)
