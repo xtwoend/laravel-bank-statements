@@ -64,6 +64,16 @@ class TableCommand extends Command
      *
      * @return void
      */
+    public function handle()
+    {
+        $this->fire();
+    }
+
+    /**
+     * Execute the console command.
+     *
+     * @return void
+     */
     public function fire()
     {
         $table = $this->laravel['config']['sule.bank-statements.statements.table'];
