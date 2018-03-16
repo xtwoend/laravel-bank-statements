@@ -150,13 +150,6 @@ class Muamalat extends Web
         $options = $this->getRequestOptions();
         $options['allow_redirects'] = false;
         $options['headers'] = array_merge($options['headers'], [
-            // 'Accept'          => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
-            // 'Accept-Encoding' => 'gzip, deflate, br',
-            // 'Accept-Language' => 'en-US,en;q=0.9,id;q=0.8,ms;q=0.7,fr;q=0.6',
-            // 'Cache-Control'   => 'no-cache',
-            // 'Connection'      => 'keep-alive',
-            // 'Origin'          => 'https://ib.muamalatbank.com',
-            // 'Pragma'          => 'no-cache',
             'Referer'         => $this->effectiveUri,
             'Content-Type'    => 'application/x-www-form-urlencoded'
         ]);
@@ -202,13 +195,6 @@ class Muamalat extends Web
         $options = $this->getRequestOptions();
         $options['allow_redirects'] = false;
         $options['headers'] = array_merge($options['headers'], [
-            // 'Accept'          => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
-            // 'Accept-Encoding' => 'gzip, deflate, br',
-            // 'Accept-Language' => 'en-US,en;q=0.9,id;q=0.8,ms;q=0.7,fr;q=0.6',
-            // 'Cache-Control'   => 'no-cache',
-            // 'Connection'      => 'keep-alive',
-            // 'Origin'          => 'https://ib.muamalatbank.com',
-            // 'Pragma'          => 'no-cache',
             'Referer'         => $this->effectiveUri
         ]);
         $options['on_stats'] = function (TransferStats $stats) {
@@ -246,13 +232,6 @@ class Muamalat extends Web
     {
         $options = $this->getRequestOptions();
         $options['headers'] = array_merge($options['headers'], [
-            // 'Accept'          => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
-            // 'Accept-Encoding' => 'gzip, deflate, br',
-            // 'Accept-Language' => 'en-US,en;q=0.9,id;q=0.8,ms;q=0.7,fr;q=0.6',
-            // 'Cache-Control'   => 'no-cache',
-            // 'Connection'      => 'keep-alive',
-            // 'Origin'          => 'https://ib.muamalatbank.com',
-            // 'Pragma'          => 'no-cache',
             'Referer'         => $this->effectiveUri
         ]);
         $options['on_stats'] = function (TransferStats $stats) {
@@ -526,11 +505,12 @@ class Muamalat extends Web
             if ($columns instanceOf DOMNodeList) {
                 $date = $columns->item(0)->nodeValue;
                 $date = Carbon::createFromFormat('d-M-Y', $date);
-                $data['date'] = $date->format('Y-m-d');
+                $date = $date->format('Y-m-d');
 
                 $description = $this->DOMinnerHTML($columns->item(1));
                 $description = str_replace('<br>', '|', $description);
                 $description = strip_tags($description);
+                $description = preg_replace('/\s{3,}/', ' ', $description);
                 $description = trim($description);
                 $description = rtrim($description, '|');
                 $description = preg_replace('/([ ]+)\|/', '|', $description);
@@ -551,7 +531,7 @@ class Muamalat extends Web
                 $uuidName .= '.'.trim($amount);
 
                 $data = array_merge($this->additionalEntityParams, [
-                    'unique_id'   => $this->generateIdentifier($uuidName), 
+                    'unique_id'   => $this->generateIdentifier($uuidName)->toString(), 
                     'date'        => trim($date), 
                     'description' => trim($description), 
                     'amount'      => trim($amount), 
