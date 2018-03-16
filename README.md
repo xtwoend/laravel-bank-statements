@@ -72,6 +72,7 @@ Available collectors :
 - bca, url : https://ibank.klikbca.com
 - mandiri, url : https://ib.bankmandiri.co.id
 - bni-mobile, url : https://ibank.bni.co.id/MBAWeb/FMB
+- muamalat, url : https://ib.muamalatbank.com
 
 
 To start collecting (scrapping) from registered e-banking website accounts
