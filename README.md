@@ -5,6 +5,11 @@ Laravel package to collect your bank statements history. Currently support for p
 
 ## Requirements
 Check the [composer.json](https://github.com/feelinc/laravel-bank-statements/blob/master/composer.json) file
+
+Support Laravel versions :
+* 5.4.*
+* 5.5.*
+* 5.6.*
     
 ## Installation
     $ php composer.phar require sule/bank-statements
